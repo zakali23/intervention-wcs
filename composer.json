@@ -1,0 +1,36 @@
+{
+  "name": "wcs/zak",
+  "description": "Simple  MVC",
+  "authors": [
+    {
+      "name": "zak",
+      "email": "zak@wcs.fr"
+    }
+  ],
+  "minimum-stability": "stable",
+  
+    "scripts": {
+      "server":"php -S localhost:8000 -t public",
+        "test": "phpunit"
+    },
+    "config": {
+      "process-timeout": 0
+    },
+  "require": {
+    "php": ">=7.0.0",
+    "nikic/fast-route": "^1.2",
+    "twig/twig": "^2.4",
+    "vlucas/phpdotenv": "^4.1"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^6.3",
+    "squizlabs/php_codesniffer": "*",
+    "phpunit/phpunit": ">=6"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/",
+      "App\\": "app/"
+    }
+  }
+}

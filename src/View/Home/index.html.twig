@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Users page{% endblock %}
+{% block content %}
+<div id="app">
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+
+    <div class="nav-overlay uk-navbar-left">
+
+        <a class="uk-navbar-item uk-logo" href="#"><img src="https://www.wildcodeschool.com/assets/logo_main-e4f3f744c8e717f1b7df3858dce55a86c63d4766d5d9a7f454250145f097c2fe.png" width="120" heigth="auto"/></a>
+
+    </div>
+    <div class="nav-overlay uk-navbar-right">
+
+        <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+
+    </div>
+    <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
+
+        <div class="uk-navbar-item uk-width-expand">
+            <form class="uk-search uk-search-navbar uk-width-1-1">
+                <input class="uk-search-input" type="search" placeholder="Search..." v-model="search" autofocus>
+            </form>
+        </div>
+
+        <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+
+    </div>
+<a class="uk-position-absolute uk-transform-center " style="left: 90%; top: 100%" href="#modal-sections"  @click="reset" uk-toggle uk-marker></a>
+</nav>
+<!--Table user -->
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <th ></th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="user in users">
+                <td><span uk-icon="user"></span></td>
+                <td><p>${ user.firstName } ${user.lastName}<p></td>
+                <td class="uk-table-link">
+                    <a class="uk-link-reset" href="">${ user.address } ${ user.address2 } , ${ user.zipCode } ${ user.city }</a>
+                </td>
+                <td>
+                <ul class="uk-iconnav">
+                  <li><a uk-icon="icon: file-edit" @click="editUser(user)"></a></li>
+                  <li><a uk-icon="icon: trash" @click="deleteUser(user.id)"></a></li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--  modal form  -->
+<div id="modal-sections" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Create User</h2>
+        </div>
+        <div class="uk-modal-body">
+          <form class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-2@s">
+                <input class="uk-input" type="text"  v-model="user.lastName" placeholder="Last name">
+            </div>
+             <div class="uk-width-1-2@s">
+                <input class="uk-input" type="text" v-model="user.firstName" placeholder="First name">
+            </div>
+            <div class="uk-width-1-2@s">
+                <input class="uk-input" type="text" v-model="user.address" placeholder="Address">
+            </div>
+            <div class="uk-width-1-4@s">
+                <input class="uk-input" type="text" v-model="user.zipCode" placeholder="Zip code">
+            </div>
+            <div class="uk-width-1-4@s">
+                <input class="uk-input" type="text" v-model="user.city" placeholder="City">
+            </div>
+            <div class="uk-width-1-1">
+                <input class="uk-input" type="text"v-model="user.address2" placeholder="additional address">
+            </div>
+           </form>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"  type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" v-if="saveShow" type="button" @click="addUser">Save</button>
+            <button class="uk-button uk-button edition" v-if="editShow" type="button" @click="validEdit">Edit</button>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script src="/assets/js/app.js"></script>
+{% endblock %}

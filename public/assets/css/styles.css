@@ -1,0 +1,10 @@
+button.uk-button.uk-button.edition {
+    background-color: orange;
+    color: white;
+}
+.uk-marker {
+    padding: 5px;
+    background: #ef7e7e;
+    color: #fff;
+    border-radius: 500px;
+}
