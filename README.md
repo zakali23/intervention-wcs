@@ -1,5 +1,5 @@
 # intervention-wcs
-project list user
+project list of user
 
 # require
 PHP
